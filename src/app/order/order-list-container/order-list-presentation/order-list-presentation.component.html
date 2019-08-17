@@ -1,0 +1,33 @@
+<div class="container my-5">
+  <div>
+    <button class="btn btn-primary float-right mb-3" [routerLink]="['/order/create']"><i
+        class="fas fa-plus"></i>&nbsp;Make New Order</button>
+    <table class="table table-stripede border border-secondary ">
+      <thead class="thead-light">
+        <th>Name</th>
+        <th>Address</th>
+        <th>Contact No</th>
+        <th class="text-center">Action</th>
+      </thead>
+      <tbody>
+
+        <tr *ngFor="let order of baseResponse">
+          <td>{{order.name}}</td>
+          <td>{{order.address}}</td>
+          <td>{{order.contactno}}</td>
+          <td class="text-center">
+            <button class="btn btn-outline-primary m-1" data-toggle="tooltip" data-placement="right" title="Edit"
+              [routerLink]="['/order/edit/']+order.id">
+              <i class="far fa-edit"></i>
+            </button>
+
+            <button class="btn btn-outline-danger m-1" [disabled]="order.paymentstatus === 'Unpaid'"
+              data-toggle="tooltip" data-placement="right" title="Delete" (click)="deleteOrder(order.id)">
+              <i class="far fa-trash-alt"></i>
+            </button>
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
